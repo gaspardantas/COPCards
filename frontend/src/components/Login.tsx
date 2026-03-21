@@ -1,5 +1,13 @@
 import { useState } from "react";
 
+function buildPath(route: string): string {
+  if (import.meta.env.MODE !== "development") {
+    return "http://129.212.179.35:5000/" + route;
+  } else {
+    return "http://localhost:5000/" + route;
+  }
+}
+
 function Login() {
   const [loginName, setLoginName] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
@@ -12,7 +20,7 @@ function Login() {
     const js = JSON.stringify(obj);
 
     try {
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(buildPath("api/login"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },

@@ -1,5 +1,13 @@
 import { useState } from "react";
 
+function buildPath(route: string): string {
+  if (import.meta.env.MODE !== "development") {
+    return "http://129.212.179.35:5000/" + route;
+  } else {
+    return "http://localhost:5000/" + route;
+  }
+}
+
 function CardUI() {
   const firstName = localStorage.getItem("firstName") || "Diver";
   const lastName = localStorage.getItem("lastName") || "";
@@ -22,7 +30,7 @@ function CardUI() {
     const obj = { userId: userId, card: cardText };
     const js = JSON.stringify(obj);
     try {
-      const response = await fetch("http://localhost:5000/api/addCard", {
+      const response = await fetch(buildPath("api/addCard"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
@@ -44,7 +52,7 @@ function CardUI() {
     const obj = { userId: userId, search: searchText };
     const js = JSON.stringify(obj);
     try {
-      const response = await fetch("http://localhost:5000/api/searchCards", {
+      const response = await fetch(buildPath("api/searchCards"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },

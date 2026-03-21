@@ -1,5 +1,13 @@
 import { useState } from "react";
 
+function buildPath(route: string): string {
+  if (import.meta.env.MODE !== "development") {
+    return "http://129.212.179.35:5000/" + route;
+  } else {
+    return "http://localhost:5000/" + route;
+  }
+}
+
 function Register() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -21,7 +29,7 @@ function Register() {
     const js = JSON.stringify(obj);
 
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch(buildPath("api/register"), {
         method: "POST",
         body: js,
         headers: { "Content-Type": "application/json" },
