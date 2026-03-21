@@ -1,11 +1,7 @@
 import { useState } from "react";
 
 function buildPath(route: string): string {
-  if (import.meta.env.MODE !== "development") {
-    return "http://129.212.179.35:5000/" + route;
-  } else {
-    return "http://localhost:5000/" + route;
-  }
+  return import.meta.env.VITE_API_URL + "/" + route;
 }
 
 function CardUI() {
