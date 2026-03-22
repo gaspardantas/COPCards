@@ -2,7 +2,7 @@
 
 A full-stack web application built with the MERN stack featuring a deep ocean diving theme.
 
-**Live Demo:** http://129.212.179.35
+**Live Demo:** [http://129.212.179.35](https://cards.gaspardantas.com/)
 
 ---
 
